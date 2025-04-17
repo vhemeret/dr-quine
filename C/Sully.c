@@ -3,30 +3,8 @@
 
 int main() {
 	int x = 4;
-	if (x <= 0)
-		return (0);
-	char *str = "#include <stdio.h>%c#include <stdlib.h>%c%cint main() {%c\
-	int x = %d;%c\
-	if (x <= 0)%c\
-	return (0);%c\
-	char *str = %c%s%c;%c\
-	char *filename = NULL;%c\
-	char *compile_cmd = NULL;%c\
-	char *exec_cmd = NULL;%c\
-	FILE *fd;%c%c\
-	if (asprintf(&filename, %cSully_%%d.c%c, x - 1) == -1) return (1);%c\
-	fd = fopen(filename, %cw%c);%c\
-	if (!fd) return (1);%c\
-	fprintf(fd, str, 10, 10, 10, 10, x - 1, 10, 10, 10, 34, str, 34, 10, 10, 10, 10, 10, 10, 34, 34, 10, 34, 34, 10, 10, 10, 10, 10, 34, 34, 10, 10, 10, 34, 34, 10, 10, 10, 10, 10, 10, 10);%c\
-	fclose(fd);%c%c\
-	if (asprintf(&compile_cmd, %cgcc -Wall -Wextra -Werror %%s -o Sully_%%d%c, filename, x - 1) == -1) return (1);%c\
-	system(compile_cmd);%c%c\
-	if (asprintf(&exec_cmd, %c./Sully_%%d%c, x - 1) == -1) return (1);%c\
-	system(exec_cmd);%c%c\
-	free(filename);%c\
-	free(compile_cmd);%c\
-	free(exec_cmd);%c\
-	return (0);%c}";
+	if (x <= 0) return (0);
+	char *str = "#include <stdio.h>%c#include <stdlib.h>%c%cint main() {%c%cint x = %d;%c%cif (x <= 0) return (0);%c%cchar *str = %c%s%c;%c%cchar *filename = NULL;%c%cchar *compile_cmd = NULL;%c%cchar *exec_cmd = NULL;%c%cFILE *fd;%c%c%cif (asprintf(&filename, %cSully_%%d.c%c, x - 1) == -1) return (1);%c%cfd = fopen(filename, %cw%c);%c%cif (!fd) return (1);%c%cfprintf(fd, str, 10, 10, 10, 10, 9, x - 1, 10, 9, 10, 9, 34, str, 34, 10, 9, 10, 9, 10, 9, 10, 9, 10, 10, 9, 34, 34, 10, 9, 34, 34, 10, 9, 10, 9, 10, 9, 10, 10, 9, 34, 34, 10, 9, 10, 10, 9, 34, 34, 10, 9, 10, 10, 9, 10, 9, 10, 9, 10, 9, 10);%c%cfclose(fd);%c%c%cif (asprintf(&compile_cmd, %cgcc -Wall -Wextra -Werror %%s -o Sully_%%d%c, filename, x - 1) == -1) return (1);%c%csystem(compile_cmd);%c%c%cif (asprintf(&exec_cmd, %c./Sully_%%d%c, x - 1) == -1) return (1);%c%csystem(exec_cmd);%c%c%cfree(filename);%c%cfree(compile_cmd);%c%cfree(exec_cmd);%c%creturn (0);%c}";
 	char *filename = NULL;
 	char *compile_cmd = NULL;
 	char *exec_cmd = NULL;
@@ -35,7 +13,7 @@ int main() {
 	if (asprintf(&filename, "Sully_%d.c", x - 1) == -1) return (1);
 	fd = fopen(filename, "w");
 	if (!fd) return (1);
-	fprintf(fd, str, 10, 10, 10, 10, x - 1, 10, 10, 10, 34, str, 34, 10, 10, 10, 10, 10, 10, 34, 34, 10, 34, 34, 10, 10, 10, 10, 10, 34, 34, 10, 10, 10, 34, 34, 10, 10, 10, 10, 10, 10, 10);
+	fprintf(fd, str, 10, 10, 10, 10, 9, x - 1, 10, 9, 10, 9, 34, str, 34, 10, 9, 10, 9, 10, 9, 10, 9, 10, 10, 9, 34, 34, 10, 9, 34, 34, 10, 9, 10, 9, 10, 9, 10, 10, 9, 34, 34, 10, 9, 10, 10, 9, 34, 34, 10, 9, 10, 10, 9, 10, 9, 10, 9, 10, 9, 10);
 	fclose(fd);
 
 	if (asprintf(&compile_cmd, "gcc -Wall -Wextra -Werror %s -o Sully_%d", filename, x - 1) == -1) return (1);
